@@ -1,6 +1,15 @@
 # DragModalView
-DragModalView using SwiftUI
 
+This is a tutorial using SwiftUI to create a modal view that covers only a specific part of the screen. 
+It is quite simple and dynamically configured.
+
+All the kudos for chrisguirguis who provides a good init code. 🙏🏻 Refs: http://chrisguirguis.com/intermediatetutorialfiles/
+
+[![Watch the video]](https://www.youtube.com/watch?v=SyYyBxEji2I&feature=youtu.be)
+
+DragModalView code sample using SwiftUI.
+
+The modal view:
 
 ```swift
 private enum DragState {
@@ -156,5 +165,30 @@ private func fractionProgress(
     }
 
     return inverted ? (1 - val) : val
+}
+```
+How to use it:
+
+```swift
+struct ContentView: View {
+
+    @State var isShown = false
+
+    var body: some View {
+        ZStack {
+            Button(action: {
+                isShown.toggle()
+            }, label: {
+                Text("Show Modal")
+                    .font(.system(size: 32, weight: .semibold))
+                    .foregroundColor(.white)
+            })
+            DragModalView(isShown: $isShown, height: .regular) {
+                Text("Here goes my content view.")
+            }
+        }
+        .background(Color(#colorLiteral(red: 0.2186107635, green: 0.7709638476, blue: 0.7870952487, alpha: 1)))
+        .ignoresSafeArea()
+    }
 }
 ```
