@@ -5,6 +5,7 @@ enum DragModalSize {
     case regular // 50%
     case large // 75%
     case fullscreen // 100%
+    case custom(height: CGFloat)
 
     var size: CGFloat {
         switch self {
@@ -17,6 +18,8 @@ enum DragModalSize {
         case .fullscreen:
             // Remove the safe area for `.fullscreen` mode. You can get this value dynamically.
             return UIScreen.main.bounds.size.height - 44
+        case .custom(let height):
+            return height
         }
     }
 }
